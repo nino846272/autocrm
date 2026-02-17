@@ -2,7 +2,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/SideBar";
 import Dashboard from "./pages/Dashboard";
-import ShipmentsPage from "./pages/ShipmentsPage";
+import ProductPage from "./pages/ProductPage";
+import ClientsPage from "./pages/ClientsPage";
+
 
 function App() {
   return (
@@ -12,7 +14,8 @@ function App() {
         <main className="flex-1 bg-gray-50 overflow-auto">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/products" element={<ShipmentsPage />} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/clients" element={<ClientsPage />} />
             <Route path="/" element={<Dashboard />} />
           </Routes>
         </main>

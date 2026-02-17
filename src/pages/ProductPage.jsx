@@ -35,7 +35,7 @@ function TypeBadge({ type }) {
   );
 }
 
-export default function ShipmentsPage() {
+export default function ProductPage() {
   return (
     <div className="bg-slate-900 min-h-screen p-6">
       <div className="flex items-start justify-between mb-6">
