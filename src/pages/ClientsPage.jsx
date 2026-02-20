@@ -1,6 +1,6 @@
+// клиенты
 import React, { useState } from "react";
 import { Plus, Edit, Trash2, AlertCircle } from "lucide-react";
-
 export default function ClientsPage() {
   const [clients] = useState([
     {
@@ -57,33 +57,31 @@ export default function ClientsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
-      <div className="flex justify-between items-start mb-8">
+    <div className="bg-slate-900 min-h-screen p-6">
+      <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-semibold text-white mb-2">Клиенты</h1>
-          <p className="text-slate-400 text-sm">
-            Управление клиентами и должниками
-          </p>
+          <h1 className="text-white text-3xl font-bold mb-2">Клиенты</h1>
+          <p className="text-gray-400">Управление клиентами и должниками</p>
         </div>
         <button
           onClick={handleAddClient}
-          className="flex items-center gap-2 px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 bg-blue-600 hover:opacity-95 text-white font-semibold px-4 py-2 rounded-lg"
         >
           <Plus size={18} />
           Добавить клиента
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="bg-slate-800 rounded-lg p-4">
           <span className="block text-xs uppercase text-slate-400 tracking-wide mb-2">
             Всего клиентов
           </span>
-          <span className="block text-4xl font-bold text-slate-200">
+          <span className="block text-4xl font-bold text-white">
             {totalClients}
           </span>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+        <div className="bg-slate-800 rounded-lg p-4">
           <span className="block text-xs uppercase text-slate-400 tracking-wide mb-2">
             Должников
           </span>
@@ -91,7 +89,7 @@ export default function ClientsPage() {
             {debtors}
           </span>
         </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+        <div className="bg-slate-800 rounded-lg p-4">
           <span className="block text-xs uppercase text-slate-400 tracking-wide mb-2">
             Общая сумма долга
           </span>
@@ -101,33 +99,25 @@ export default function ClientsPage() {
         </div>
       </div>
 
-      <div className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-slate-950">
-            <tr>
-              <th className="px-4 py-4 text-left text-xs uppercase font-semibold text-slate-400 tracking-wider border-b border-slate-700">
-                Имя
-              </th>
-              <th className="px-4 py-4 text-left text-xs uppercase font-semibold text-slate-400 tracking-wider border-b border-slate-700">
-                Телефон
-              </th>
-              <th className="px-4 py-4 text-center text-xs uppercase font-semibold text-slate-400 tracking-wider border-b border-slate-700">
-                Долг
-              </th>
-              <th className="px-4 py-4 text-right text-xs uppercase font-semibold text-slate-400 tracking-wider border-b border-slate-700">
-                Действия
-              </th>
+      <div className="bg-slate-800 rounded-xl p-4">
+        <table className="w-full text-left table-auto">
+          <thead>
+            <tr className="text-gray-400 text-sm border-b border-slate-700">
+              <th className="py-4 px-4">Имя</th>
+              <th className="py-4 px-4">Телефон</th>
+              <th className="py-4 px-4">Долг</th>
+              <th className="py-4 px-4 text-right">Действия</th>
             </tr>
           </thead>
           <tbody>
-            {clients.map((client) => (
+            {clients.map((client, idx) => (
               <tr
                 key={client.id}
-                className={`border-b border-slate-700 transition-colors ${
-                  client.status === "debtor" ? "bg-red-950 bg-opacity-10" : ""
-                }`}
+                className={`text-gray-200 ${
+                  idx < clients.length - 1 ? "border-b border-slate-700" : ""
+                } ${client.status === "debtor" ? "bg-red-950 bg-opacity-10" : ""}`}
               >
-                <td className="px-4 py-4 text-slate-200">
+                <td className="py-4 px-4">
                   <div className="flex items-center gap-2">
                     {client.status === "debtor" && (
                       <AlertCircle
@@ -138,8 +128,8 @@ export default function ClientsPage() {
                     <span>{client.name}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4 text-slate-200">{client.phone}</td>
-                <td className="px-4 py-4 text-center">
+                <td className="py-4 px-4">{client.phone}</td>
+                <td className="py-4 px-4">
                   {client.debt > 0 ? (
                     <span className="text-red-500 font-medium">
                       {client.debt.toLocaleString()} сом
@@ -148,18 +138,18 @@ export default function ClientsPage() {
                     <span className="text-slate-500">—</span>
                   )}
                 </td>
-                <td className="px-4 py-4">
-                  <div className="flex items-center justify-end gap-2">
+                <td className="py-4 px-4">
+                  <div className="flex items-center justify-end gap-3">
                     <button
                       onClick={() => handleEdit(client.id)}
-                      className="p-2 hover:bg-slate-700 rounded-md transition-colors text-slate-300 hover:text-slate-100"
+                      className="text-gray-300 hover:text-white"
                       title="Редактировать"
                     >
                       <Edit size={18} />
                     </button>
                     <button
                       onClick={() => handleDelete(client.id)}
-                      className="p-2 hover:bg-red-950 hover:bg-opacity-30 rounded-md transition-colors text-slate-300 hover:text-red-500"
+                      className="text-red-500 hover:opacity-90"
                       title="Удалить"
                     >
                       <Trash2 size={18} />

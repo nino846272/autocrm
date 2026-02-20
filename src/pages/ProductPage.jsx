@@ -1,4 +1,4 @@
-import React from "react";
+// товары 
 import { Plus, Edit, Trash2, Check } from "lucide-react";
 
 const sampleProducts = [

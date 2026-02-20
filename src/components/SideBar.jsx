@@ -19,7 +19,7 @@ const Sidebar = () => {
   const menuItems = [
     {
       id: "dashboard",
-      label: "Dashboard",
+      label: "Панель",
       icon: LayoutDashboard,
       path: "/dashboard",
       color: "text-blue-400",

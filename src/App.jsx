@@ -4,7 +4,7 @@ import Sidebar from "./components/SideBar";
 import Dashboard from "./pages/Dashboard";
 import ProductPage from "./pages/ProductPage";
 import ClientsPage from "./pages/ClientsPage";
-
+import ShipmentPage from "./pages/ShipmentPage";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
             <Route path="/products" element={<ProductPage />} />
             <Route path="/clients" element={<ClientsPage />} />
             <Route path="/" element={<Dashboard />} />
+            <Route path="/shipments" element={<ShipmentPage />} />
           </Routes>
         </main>
       </div>

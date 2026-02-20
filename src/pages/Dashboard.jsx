@@ -1,3 +1,4 @@
+// домашняя страница
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import {
@@ -7,6 +8,7 @@ import {
   TrendingDown,
   Plus,
 } from "lucide-react";
+
 
 const StatCard = ({ icon: Icon, title, value, subtitle, trend }) => (
   <div className="bg-slate-800 rounded-lg p-6 flex items-start justify-between">
